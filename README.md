@@ -2,7 +2,7 @@
 
 ## Setup
 
-Got into `snake-game` folder
+Goto folder
 
 - use npm
 
