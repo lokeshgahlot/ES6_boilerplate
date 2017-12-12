@@ -1,80 +1,38 @@
-var webpack = require('webpack');
-var path = require('path');
-const CompressionPlugin = require("compression-webpack-plugin");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-module.exports = {
-  entry: [
-	"babel-polyfill",
-    './src/app.js'
-  ],
-  externals: {
-    'cheerio': 'window'
+{
+  "name": "D3-brush",
+  "version": "1.0.0",
+  "description": "D3 brush",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --colors",
+    "build": "cross-env NODE_ENV=production webpack"
   },
-  plugins: [
-    new webpack.ProvidePlugin({
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
-    }),
-		new webpack.EnvironmentPlugin(['NODE_ENV']),
-    new CompressionPlugin({
-			asset: "bundle.gz.js",
-			algorithm: "gzip",
-			test: /bundle.js$/,
-			//threshold: 10240,
-			minRatio: 0.8
-		}),
-    new ExtractTextPlugin('bundle.css')
-  ],
-  output: {
-    path: __dirname + '/public/',
-    filename: 'bundle.js'
+  "author": "Lokesh Gahlot",
+  "dependencies": {
+    "bootstrap": "4.0.0-beta.2",
+    "d3": "^4.12.0"
   },
-  resolve: {
-    modules: [
-      __dirname,
-      'node_modules',
-      './app'
-    ],
-    alias: {
-    },
-    extensions: ['.js', '.jsx']
-  },
-  module: {
-    rules: [
-      {
-        loader: 'babel-loader',
-        test: /\.js?$/,
-        exclude: /(node_modules|bower_components)/
-      },{
-        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000&mimetype=application/font-woff"
-      }, {
-        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000&mimetype=application/font-woff"
-      }, {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000&mimetype=application/octet-stream"
-      }, {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file"
-      }, {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000&mimetype=image/svg+xml"
-      },{
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader',
-            'sass-loader',
-          ],
-        }),
-      }
-    ]
-  },
-  devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
-};
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^7.1.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "compression-webpack-plugin": "^0.3.2",
+    "concurrently": "^3.4.0",
+    "cross-env": "^5.0.0",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "2.1.2",
+    "node-sass": "^4.7.2",
+    "postcss-loader": "^2.0.9",
+    "precss": "^2.0.0",
+    "sass-loader": "^6.0.6",
+    "script-loader": "^0.7.0",
+    "style-loader": "^0.19.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^2.6.0",
+    "webpack-dev-server": "^2.5.1"
+  }
+}
